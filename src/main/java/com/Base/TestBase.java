@@ -1,9 +1,16 @@
 package com.Base;
 
+import com.OpenCart.Registration;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.Random;
 
 public class TestBase {
     public static WebDriver driver;
@@ -48,5 +55,66 @@ public class TestBase {
     public static void openUrl(String URL)
     {
         driver.get(URL);
+    }
+
+    public static String RandomEmail() throws IOException {
+
+        FileOutputStream fis = new FileOutputStream("./src/main/resources/Data.properties");
+        Properties prop = new Properties();
+
+
+//        prop.setProperty("Password",Registration.Pass);
+
+        prop.store(fis, null);
+
+
+        String SALTCHAR = "abcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+
+        while (salt.length() < 7) {
+            int index = (int) (rnd.nextFloat() * SALTCHAR.length());
+            salt.append(SALTCHAR.charAt(index));
+
+        }
+        String saltstr = salt.toString().concat("@gmail.com");
+        prop.setProperty("RandomEmail",saltstr);
+        prop.store(fis, null);
+        return saltstr;
+    }
+
+    public static String RandomPassword() throws IOException {
+
+        FileOutputStream fis = new FileOutputStream("./src/main/resources/Data.properties");
+        Properties prop = new Properties();
+
+        String SALTCHAR = "abcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+
+        while (salt.length() < 7) {
+            int index = (int) (rnd.nextFloat() * SALTCHAR.length());
+            salt.append(SALTCHAR.charAt(index));
+
+        }
+        String saltstr = salt.toString();
+        prop.setProperty("Password",saltstr);
+        prop.store(fis, null);
+        return saltstr;
+    }
+
+    public static String RandomNameStatic() throws IOException
+    {
+        String SALTCHAR = "abcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+
+        while (salt.length() < 7) {
+            int index = (int) (rnd.nextFloat() * SALTCHAR.length());
+            salt.append(SALTCHAR.charAt(index));
+
+        }
+        String saltstr = salt.toString();
+        return saltstr;
     }
 }
