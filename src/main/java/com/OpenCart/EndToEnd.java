@@ -1,7 +1,7 @@
 package com.OpenCart;
 
 import com.Base.TestBase;
-import com.BrowserSetup.TitleAndURLVerification;
+import com.Browsers.TitleAndURLVerification;
 
 import java.io.IOException;
 

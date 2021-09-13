@@ -1,4 +1,4 @@
-package com.BrowserSetup;
+package com.Browsers;
 
 import com.Base.TestBase;
 

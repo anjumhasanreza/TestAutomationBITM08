@@ -12,7 +12,9 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 
-public class TestBase {
+public class TestBase
+{
+
     public static WebDriver driver;
 
 //    public static void main(String[] args) {
@@ -61,10 +63,6 @@ public class TestBase {
 
         FileOutputStream fis = new FileOutputStream("./src/main/resources/Data.properties");
         Properties prop = new Properties();
-
-
-//        prop.setProperty("Password",Registration.Pass);
-
         prop.store(fis, null);
 
 

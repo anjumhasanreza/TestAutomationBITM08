@@ -1,7 +1,7 @@
 package com.Properties;
 
 import com.Base.TestBase;
-import com.BrowserSetup.TitleAndURLVerification;
+import com.Browsers.TitleAndURLVerification;
 import com.OpenCart.Login;
 import com.OpenCart.Logout;
 import com.OpenCart.Registration;

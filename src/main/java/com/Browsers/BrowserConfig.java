@@ -1,4 +1,4 @@
-package com.BrowserSetup;
+package com.Browsers;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
