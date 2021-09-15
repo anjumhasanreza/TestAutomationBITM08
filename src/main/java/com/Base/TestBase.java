@@ -1,11 +1,15 @@
 package com.Base;
 
 import com.OpenCart.Registration;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -114,5 +118,16 @@ public class TestBase
         }
         String saltstr = salt.toString();
         return saltstr;
+    }
+
+//********************ScreenShot***********************
+
+    public static void generateScreenshot(String name) throws IOException {
+        //Capture
+        File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+        //Save to
+        FileUtils.copyFile(srcFile,new File("./src/main/Screenshots/"+name+".png"),true);
+        System.out.println("Image Capture and save");
     }
 }
