@@ -1,6 +1,8 @@
 package com.Base;
 
 import com.OpenCart.Registration;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -120,7 +122,7 @@ public class TestBase
         return saltstr;
     }
 
-//********************ScreenShot***********************
+//******************** ScreenShot ***********************
 
     public static void generateScreenshot(String name) throws IOException {
         //Capture
@@ -129,5 +131,26 @@ public class TestBase
         //Save to
         FileUtils.copyFile(srcFile,new File("./src/main/Screenshots/"+name+".png"),true);
         System.out.println("Image Capture and save");
+    }
+
+//******************** Create PDF ***********************
+
+    public static void createPDF(String Name) throws IOException, DocumentException
+    {
+        //Take Screenshot as BYTE
+        byte[] input = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+        Document doc = new Document();
+        String output = "./src/main/PDF/"+Name+".pdf";
+        FileOutputStream fs = new FileOutputStream(output);
+        PdfWriter writer = PdfWriter.getInstance(doc,fs);
+        writer.open();
+        doc.open();
+        Image img = Image.getInstance(input);
+        img.scaleToFit(PageSize.A4.getWidth()/2,PageSize.A4.getHeight()/2);
+        doc.add(img);
+        doc.add(new Paragraph("Created by Anjum Hasan Reza/01678045810"));
+        doc.close();
+        writer.close();
+        System.out.println("PDF Generate Successfully");
     }
 }
